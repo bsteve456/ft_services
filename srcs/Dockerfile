@@ -12,14 +12,20 @@ RUN apk add lftp
 
 RUN adduser steve --disabled-password && echo steve | passwd -d steve
 
-RUN mkdir home/steve/ftp && chmod a-w home/steve/ftp && echo "Hello World" >> home/steve/ftp/anon.txt
+RUN mkdir home/steve/ftp && echo "Hello World" >> home/steve/ftp/anon.txt
 
 RUN rm etc/vsftpd/vsftpd.conf
 
+RUN chmod 757 home/steve/ftp/ && chown -R steve home/steve/ftp
+
 RUN echo "steve" | tee -a /etc/vsftpd.userlist
 
-ADD srcs/vsftpd.conf etc/vsftpd/vsftpd.conf
+ADD vsftpd.conf etc/vsftpd/vsftpd.conf
 
 RUN rc-update add vsftpd && rc-status && touch run/openrc/softlevel
 
-RUN rc-service vsftpd start && rc-status
+ADD start_ftps.sh /start_ftps.sh
+
+RUN chmod 755 /start_ftps.sh
+
+CMD ["sh", "/start_ftps.sh"]
