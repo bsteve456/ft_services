@@ -2,7 +2,7 @@ FROM alpine:latest
 
 RUN apk update && apk upgrade --available
 
-RUN apk add --no-cache tini openrc busybox-initscripts
+RUN apk add --no-cache tini openrc busybox-initscripts && apk add --no-cache bash
 
 RUN apk add openssl && apk add vsftpd  && apk add vim
 
@@ -28,4 +28,4 @@ ADD start_ftps.sh /start_ftps.sh
 
 RUN chmod 755 /start_ftps.sh
 
-CMD ["sh", "/start_ftps.sh"]
+ENTRYPOINT ["/start_ftps.sh"]
