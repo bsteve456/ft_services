@@ -5,6 +5,7 @@ metadata:
   labels:
     run: ftps-alpine
 spec:
+  type: NodePort
   ports:
   - protocol: TCP
     port: 21
@@ -29,9 +30,21 @@ spec:
       labels:
         run: ftps
     spec:
+      volumes:
+      - name: secret-volume
+        secret:
+          secretName: ftpssecret
+      - name: configmap-volume
+        configMap:
+          name: ftpsconfigmap
       containers:
       - name: ftps
         image: test_alpine
         imagePullPolicy: Never
         ports:
         - containerPort: 21
+#        volumeMounts:
+#        - mountPath: /etc/ssl/private
+#          name: secret-volume
+#        - mountPath: /etc/vsftpd
+#          name: configmap-volume
