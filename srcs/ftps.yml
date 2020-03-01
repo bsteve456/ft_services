@@ -7,44 +7,36 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - protocol: TCP
-    port: 21
+  - port: 21
     targetPort: 21
+    protocol: TCP  
+    name: ftp21
+  - port: 20
+    targetPort: 20
+    protocol: TCP
+    name: ftp20
   selector:
-    run: ftps
+    run: ftps-alpine
 ---
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ftps-alpine
-  labels:
-    app: ftps
 spec:
   selector:
     matchLabels:
-      run: ftps
+      run: ftps-alpine
   replicas: 1
   template:
     metadata:
       labels:
-        run: ftps
+        run: ftps-alpine
     spec:
-      volumes:
-      - name: secret-volume
-        secret:
-          secretName: ftpssecret
-      - name: configmap-volume
-        configMap:
-          name: ftpsconfigmap
       containers:
-      - name: ftps
+      - name: ftps-alpine
         image: test_alpine
         imagePullPolicy: Never
         ports:
         - containerPort: 21
-#        volumeMounts:
-#        - mountPath: /etc/ssl/private
-#          name: secret-volume
-#        - mountPath: /etc/vsftpd
-#          name: configmap-volume
+        - containerPort: 20

@@ -1,4 +1,4 @@
-#! bin/bash
+#! bin/sh
 
-ls -l /home/steve && ls -l /home/
-rc-service vsftpd restart && tail -f /dev/null
+#nohup touch /run/openrc/softlevel && rc-service vsftpd restart &
+touch /run/openrc/softlevel && rc-service vsftpd restart && tail -f /dev/null
