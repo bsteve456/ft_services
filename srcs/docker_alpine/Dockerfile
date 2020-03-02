@@ -32,4 +32,6 @@ RUN chmod 755 /start_ftps.sh
 
 VOLUME ["/sys/fs/cgroup"]
 
+EXPOSE 21
+
 CMD ["/start_ftps.sh"]

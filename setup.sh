@@ -1,4 +1,4 @@
-#export MINIKUBE_HOME=~/goinfre
+export MINIKUBE_HOME=~/goinfre
 minikube config set vm-driver virtualbox
 minikube start
 minikube docker-env
