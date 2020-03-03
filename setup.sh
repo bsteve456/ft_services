@@ -3,6 +3,11 @@ minikube config set vm-driver virtualbox
 minikube start
 minikube docker-env
 eval $(minikube -p minikube docker-env)
+export MINI_IP=`minikube ip`
+touch pasv.txt | echo "pasv_address=" | tee pasv.txt
+sed -i '' -e '$ d' srcs/docker_alpine/vsftpd.conf
+sed "/^pasv_address=/ s/\$/$MINI_IP/" pasv.txt | tee pasv.txt | tee -a srcs/docker_alpine/vsftpd.conf
+rm pasv.txt
 bash srcs/ssl.sh
 #bash srcs/docker_alpine/ftps_ssl.sh
 kubectl create -f srcs/ingress.yml

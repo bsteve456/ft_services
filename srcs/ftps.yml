@@ -52,6 +52,5 @@ spec:
         ports:
         - containerPort: 21
         - containerPort: 20
-        - containerPort: 30021
         - containerPort: 30020
-
+        - containerPort: 30021
