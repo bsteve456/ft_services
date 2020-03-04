@@ -11,9 +11,6 @@ spec:
     targetPort: 80
     protocol: TCP
     name: http
-  - port: 443
-    protocol: TCP
-    name: https
   selector:
     run: my-nginx
 ---
@@ -31,21 +28,9 @@ spec:
       labels:
         run: my-nginx
     spec:
-      volumes:
-      - name: secret-volume
-        secret:
-          secretName: nginxsecret
-      - name: configmap-volume
-        configMap:
-          name: nginxconfigmap
       containers:
       - name: my-nginx
-        image: yobasystems/alpine-nginx
+        image: nginx-alpine
+        imagePullPolicy: Never
         ports:
-        - containerPort: 443
-        - containerPort: 80
-        volumeMounts:
-        - mountPath: /etc/nginx/ssl
-          name: secret-volume
-        - mountPath: /etc/nginx/conf.d
-          name: configmap-volume
+         - containerPort: 80
