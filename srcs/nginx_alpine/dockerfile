@@ -8,27 +8,8 @@ RUN apk add openssl && apk add vim && apk add nginx
 
 RUN mkdir /run/nginx && touch /run/nginx/nginx.pid
 
-#RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-#	-subj "/CN=localhost" \
-#	-keyout /etc/ssl/private/nginx-selfsigned.key \
-#	-out /etc/ssl/certs/nginx-selfsigned.crt
-
-#RUN openssl dhparam -out /etc/nginx/dhparam.pem 400
-
-#ADD srcs/self-signed.conf  /etc/nginx/snippets/self-signed.conf
-
-#ADD srcs/ssl-params.conf /etc/nginx/snippets/ssl-params.conf
-
-#RUN rm /etc/nginx/sites-enabled/default
-
-#ADD srcs/default /etc/nginx/sites-enabled/default
-
-#RUN nginx -t
-
 ADD start.sh /start.sh
 
 RUN chmod 755 start.sh
-
-#VOLUME ["/sys/fs/cgroup"]
 
 ENTRYPOINT ["sh", "/start.sh"]
