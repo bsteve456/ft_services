@@ -3,7 +3,6 @@ kind: Service
 metadata:
   name: my-nginx
   labels:
-    run: my-nginx
 spec:
   type: NodePort
   ports:
@@ -16,7 +15,7 @@ spec:
     protocol: TCP
     name: https
   selector:
-    run: my-nginx
+    app: my-nginx
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -25,12 +24,12 @@ metadata:
 spec:
   selector:
     matchLabels:
-      run: my-nginx
+      app: my-nginx
   replicas: 1
   template:
     metadata:
       labels:
-        run: my-nginx
+        app: my-nginx
     spec:
       containers:
       - name: my-nginx
