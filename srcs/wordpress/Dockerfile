@@ -34,6 +34,10 @@ RUN chmod 755 start.sh
 
 ADD wp-config.php /usr/share/wordpress/
 
+ADD wordpress.sql /wordpress.sql
+
+RUN chmod 777 wordpress.sql
+
 RUN  apk -f add mysql-client mysql-server
 
 VOLUME ["/sys/fs/cgroup"]

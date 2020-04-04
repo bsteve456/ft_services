@@ -6,7 +6,5 @@ mysql -e "CREATE DATABASE IF NOT EXISTS mysql;"
 mysql -e "CREATE USER 'root'@'%' IDENTIFIED BY 'password';"
 mysql -e "FLUSH PRIVILEGES;"
 mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;"
-mysql -e 'CREATE DATABASE IF NOT EXISTS wordpress';
-
 tail -f /dev/null
 
