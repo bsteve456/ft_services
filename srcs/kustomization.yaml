@@ -10,3 +10,5 @@ resources:
 - mysql-deployment.yaml
 - wordpress-deployment.yaml
 - phpmyadmin.yaml
+- influxdb.yaml
+- telegraf.yaml

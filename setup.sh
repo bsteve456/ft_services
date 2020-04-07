@@ -20,6 +20,8 @@ docker build -t wordpress_alpine ./srcs/wordpress/
 docker build -t mysql_alpine ./srcs/mysql/
 #kubectl apply -f srcs/mysql/mysql.yml
 docker build -t phpmyadmin_alpine ./srcs/phpmyadmin/
+docker build -t influxdb_alpine ./srcs/influxdb/
+docker build -t telegraf_alpine ./srcs/telegraf/
 kubectl apply -k ./srcs/
 #kubectl delete -n default deployment wordpress
 #kubectl apply -f srcs/wordpress-deployment.yaml
