@@ -33,8 +33,8 @@ spec:
     spec:
       containers:
       - name: my-nginx
-        image: nginx-alpine
-        imagePullPolicy: Never
+        image: yobasystems/alpine-nginx
+        #       imagePullPolicy: Never
         ports:
          - containerPort: 80
          - containerPort: 443

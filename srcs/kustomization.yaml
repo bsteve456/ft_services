@@ -11,4 +11,6 @@ resources:
 - wordpress-deployment.yaml
 - phpmyadmin.yaml
 - influxdb.yaml
+- grafana.yaml
 - telegraf.yaml
+
