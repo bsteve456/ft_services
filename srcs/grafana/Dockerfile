@@ -10,9 +10,9 @@ RUN apk add busybox
 
 RUN apk add grafana --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing
 
-#RUN rm /etc/grafana.ini
+RUN mkdir /usr/share/grafana/data
 
-#ADD grafana.ini /etc/grafana.ini
+ADD grafana.db /usr/share/grafana/data/grafana.db
 
 ADD start.sh /start.sh
 

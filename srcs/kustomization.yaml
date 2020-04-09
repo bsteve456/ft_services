@@ -7,10 +7,11 @@ secretGenerator:
   - password=password
 
 resources:
+- nginx.yaml
+- ftps.yaml
 - mysql-deployment.yaml
 - wordpress-deployment.yaml
 - phpmyadmin.yaml
 - influxdb.yaml
 - grafana.yaml
 - telegraf.yaml
-
